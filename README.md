@@ -3,6 +3,8 @@ kf2monitor
 
 kf2monitor is an lcdproc client. It obtains stats like current map, wave number and the top players from a running Killing Floor 2 Dedicated Server via its WebAdmin interface, and displays them on an LCD.
 
+The WebAdmin interface must be configured to use HTTP Authentication instead of Login Form (tab Webadmin settings -> Authentication).
+
 Hardware
 --------
 
@@ -57,6 +59,21 @@ Rationale
 
 I'm also the semi-official maintainer of lcdjava. While working on it I needed a serious (ahem) project that uses it to see what kind of API and packaging makes sense. So I came up with this. Besides, once I thought of it I couldn't resist adding more bling to my Killing Floor 2 server, [Kitten Gaming](http://www.antoneliasson.se/kitten-gaming).
 
+Design
+------
+
+kf2monitor is built using a classic producer-consumer concurrent design.
+
+ProducerThread is a periodic thread that every second downloads the Killing Floor 2 server's WebAdmin interface HTML page and parses it using Jsoup. The resulting pile of List<>s and Map<,>s are put into a BlockingQueue that acts as a buffer.
+
+ConsumerThread does blocking reads on the buffer until the program exits. It does some simple formatting and accesses setter methods in Display that basically delegate everything to lcdjava's LCD class.
+
+Player and GameDataContainer are simple container classes.
+
+To make everything shut down cleanly a ShutdownHook is used in App that interrupts the producer and consumer threads and waits for them to exit.
+
+For development purposes Jsoup can be made to access a local file instead of a remote HTTP server. See the commented lines in WebAdminClient::update().
+
 Known bugs
 ----------
 
@@ -65,3 +82,5 @@ There is basically no error checking. The program will explode spectacularly if 
 In particular:
 
  - While the KF2 server changes map it refuses (in TCP terminology) connections to the WebAdmin interface. kf2monitor does not handle this.
+ - Likewise, if you enter the wrong WebAdmin credentials, you get a stack trace.
+ - If there are problems communicating with LCDproc, you get a slightly different stack trace.

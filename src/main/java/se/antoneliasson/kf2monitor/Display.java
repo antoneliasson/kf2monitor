@@ -111,9 +111,13 @@ class Display {
     }
 
     void setPlayerList(List<Player> players) {
-        for (int i = 0; i < 3 && i < players.size(); i++) {
-            Player p = players.get(i);
-            player[i].setText(p.kills + " " + Player.formatPerk.get(p.perk) + " " + p.name);
+        for (int i = 0; i < 3; i++) {
+            if (i < players.size()) {
+                Player p = players.get(i);
+                player[i].setText(p.kills + " " + Player.formatPerk.get(p.perk) + " " + p.name);
+            } else {
+                player[i].setText("");
+            }
         }
     }
 }

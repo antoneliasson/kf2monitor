@@ -7,6 +7,7 @@ import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class WebAdminClient {
@@ -31,24 +32,25 @@ public class WebAdminClient {
     }
 
     public GameDataContainer update() {
-        //        String authString = USER + ":" + PASSWORD;
-//        String encodedString = Base64.getEncoder().encodeToString(authString.getBytes(StandardCharsets.UTF_8));
-//
-//        try {
-//            Document document = Jsoup.connect(URL)
-//                    .header("Authorization", "Basic " + encodedString)
-//                    .get();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        File input = new File("serverinfo.html");
         Document doc = null;
+
+        String authString = user + ":" + password;
+        String encodedString = Base64.getEncoder().encodeToString(authString.getBytes(StandardCharsets.UTF_8));
+
         try {
-            doc = Jsoup.parse(input, "UTF-8", url);
+            doc = Jsoup.connect(url)
+                    .header("Authorization", "Basic " + encodedString)
+                    .get();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+//        File input = new File("serverinfo.html");
+//        try {
+//            doc = Jsoup.parse(input, "UTF-8", url);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         Element currentGame = doc.getElementById("currentGame");
         Elements dlItems = currentGame.select("dt, dd");
         Map<String, String> game = mapDL(dlItems);

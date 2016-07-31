@@ -3,16 +3,16 @@ package se.antoneliasson.kf2monitor;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import static java.lang.System.exit;
+
 public class App 
 {
     static final String URL = "http://kf2server:8080/ServerAdmin/current/info";
-    static final String USER = "admin";
-    static final String PASSWORD = "pw";
 
-    public App() {
+    public App(String username, String password, String host, int port) {
         BlockingQueue<GameDataContainer> messages = new LinkedBlockingQueue<>();
-        ProducerThread p = new ProducerThread(messages, URL, USER, PASSWORD);
-        Display display = new Display("192.168.1.242", 13666);
+        ProducerThread p = new ProducerThread(messages, URL, username, password);
+        Display display = new Display(host, port);
         ConsumerThread c = new ConsumerThread(messages, display);
         p.start();
         c.start();
@@ -35,6 +35,19 @@ public class App
 
     public static void main( String[] args )
     {
-        new App();
+        if (args.length < 3) {
+            System.err.println("Usage: java App <webadmin username> <webadmin password> <lcdproc host> [lcdproc port]");
+            exit(1);
+        }
+        String username = args[0];
+        String password = args[1];
+        String host = args[2];
+        int port;
+        if (args.length > 3) {
+            port = Integer.parseInt(args[3]);
+        } else {
+            port = 13666;
+        }
+        new App(username, password, host, port);
     }
 }

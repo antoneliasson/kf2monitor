@@ -21,9 +21,11 @@ kf2monitor uses [lcdjava][] as its lcdproc client library. lcdjava hasn't yet be
 
 to install the JAR into your local repository (in *$HOME/.m2/*). You're done!
 
+If you do this after you already imported the project into your IDE from the Maven POM you may have to nuke the project and re-import it to get your IDE to see the lcdjava classes.
+
 ### Building kf2monitor
 
-You should now be able to build kf2monitor by issuing a `mvn compile` in its checked out source directory.
+You should now be able to build kf2monitor by issuing a `mvn compile` in its checked out source directory. Unless I've broken the API of lcdjava of course, since it doesn't have a stable release yet.
 
 [lcdjava]: https://github.com/boncey/lcdjava/
 

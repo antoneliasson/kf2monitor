@@ -12,7 +12,8 @@ public class App
     public App() {
         BlockingQueue<GameDataContainer> messages = new LinkedBlockingQueue<>();
         ProducerThread p = new ProducerThread(messages, URL, USER, PASSWORD);
-        ConsumerThread c = new ConsumerThread(messages);
+        Display display = new Display("192.168.1.242", 13666);
+        ConsumerThread c = new ConsumerThread(messages, display);
         p.start();
         c.start();
 

@@ -95,6 +95,9 @@ public class WebAdminClient {
             players.add(player);
         }
 
+        // Players are sorted by dosh. Sort them by kills:
+        players.sort(new PlayerComparator());
+
         return new GameDataContainer(game, rules, players);
     }
 }

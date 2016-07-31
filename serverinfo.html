@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<title>Killing Floor 2 WebAdmin - Server Info</title>
+	<link rel="stylesheet" type="text/css" href="/images/kf2.css?gzip" />
+	<link rel="stylesheet" type="text/css" href="/images/kf2modern.css?gzip" />
+	 
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+	<meta name="generator" content="Killing Floor 2 WebAdmin" />
+	<script type="text/javascript">
+	var webadminPath = '/ServerAdmin';
+	var pageUri = '/ServerAdmin/current/info'; 
+	</script>
+	<script type="text/javascript" src="/images/jquery.js?gzip"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,700,700italic,600italic' rel='stylesheet' type='text/css'>
+	
+</head>
+<body class="">
+
+
+<div id="header">
+  <h1><span>Killing Floor 2 WebAdmin</span></h1>
+  <h3 id="pageUri">/current/info</h3>
+  <h4 id="adminName">Welcome <span class="username">admin</span></h4>
+  <div id="pageInfo">
+    <h2 id="pageTitle">Server Info</h2>
+    <p id="pageDescription">The current game status.</p>
+  </div>
+</div>
+
+<div id="gamesummary">
+<h2>Current Game</h2>
+<div id="gamesummary-details">
+<div class="gs_mapimage"><img src="/images/maps/noimage.png" alt="KF-Defence_Thyself_Day_Fin3"/></div>
+<dl class="gs_details">
+  <dt class="gs_map">Map</dt>
+  <dd class="gs_map">KF-Defence_Thyself</dd>
+  <dt class="gs_players">Players</dt>
+  <dd class="gs_players">1/6</dd>
+  <dt class="gs_wave">Wave 6</dt>
+  <dd class="gs_wave">31/52</dd>
+</dl>
+</div>
+<script type="text/javascript" src="/images/gamesummary.js?gzip"></script>
+
+</div>
+
+<div id="messages">
+
+
+</div>
+
+
+<div id="content">
+
+
+
+<fieldset id="notesField" title="Here you can leave some notes. They will be stored on the server so other administrators can see and edit them.">
+<legend>Notes</legend>
+<form action="/ServerAdmin/current/info" method="post" id="notesForm">
+<div>
+<textarea id="notes" name="notes" rows="5" cols="80" style="width:100%;"></textarea>
+</div>
+<div id="notectrl">
+<button type="submit" name="action" value="save">Save</button>
+</div>
+</form>
+</fieldset>
+
+<table width="100%" id="currentinfo">
+<colgroup>
+    <col width="25%"/>
+    <col width="25%"/>
+    <col width="50%"/>
+</colgroup>
+<tr>
+<td>
+
+<h3>Current Game</h3>
+
+<div class="section">
+<dl id="currentGame">
+    <dt>Server Name</dt>
+    <dd>Kitten Gaming</dd>
+    <dt>Cheat Protection</dt>
+    <dd>On</dd>
+    <dt>Game type</dt>
+    <dd title="KFGameContent.KFGameInfo_Survival">Survival</dd>
+    <dt>Map</dt>
+    <dd title="KF-Defence_Thyself_Day_Fin3">KF-Defence_Thyself</dd>
+    <dt>Mutators</dt>
+    <dd></dd>
+</dl>
+</div>
+</td>
+<td>
+
+<h3>Rules</h3>
+<div class="section">
+<dl id="currentRules">
+<dt>Wave</dt>
+<dd>6/7</dd>
+<dt>Difficulty</dt>
+<dd>Suicidal</dd>
+<dt>Players</dt>
+<dd>1/6</dd>
+<dt>Minimum to Start</dt>
+<dd>1</dd>
+<dt>Spectators</dt>
+<dd>0/2</dd>
+<dt>Player Map Voting</dt>
+<dd>On</dd>
+<dt>Player Kick voting</dt>
+<dd>On</dd>
+
+</dl>
+</div>
+</td>
+
+<td>
+<h3>Players</h3>
+<div class="section narrow">
+<table id="players" class="grid" width="100%">
+<thead>
+<tr>
+    <th>&#160;</th>
+    <th><a href="/ServerAdmin/current/info?sortby=name&amp;reverse=" class="sortable ">Name</a></th>
+    <th><a href="/ServerAdmin/current/info?sortby=perk&amp;reverse=" class="sortable ">Perk</th>
+    <th><a href="/ServerAdmin/current/info?sortby=score&amp;reverse=" class="sortable sorted">Dosh</a></th>
+    <th>Health</th>
+    <th><a href="/ServerAdmin/current/info?sortby=kills&amp;reverse=" class="sortable ">Kills</a></th>
+    <th><a href="/ServerAdmin/current/info?sortby=ping&amp;reverse=" class="sortable ">Ping</a></th>
+    <th>Admin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+  <td style="background: transparent; color: transparent;">&#160;</td>
+  <td>dMg`?.??</td>
+  <td>Gunslinger</td>
+  <td class="right">603</td>
+  <td class="right">100</td>
+  <td class="right">224</td>
+  <td class="right" title="Packet loss: ">44</td>
+  <td class="center">No</td>
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+</td>
+</tr>
+</table>
+
+
+<script type="text/javascript">
+//<![CDATA[
+var pageUri = '/ServerAdmin/current/info';
+//]]>
+</script>
+<script type="text/javascript" src="/images/current.js?gzip"></script>
+
+</div>
+
+
+<div id="menu">
+<h2>Navigation</h2>
+
+<ul class="navigation">
+<li class="with-submenu"><a href="/ServerAdmin/current" title="The current game status."><span>Current Game</span></a>
+<ul class="navigation">
+<li class="no-submenu"><a href="/ServerAdmin/current/info" title="The current game status."><span>Server Info</span></a></li>
+<li class="no-submenu"><a href="/ServerAdmin/current/change" title="Change the current map or game type."><span>Change Map</span></a></li>
+<li class="no-submenu"><a href="/ServerAdmin/current/players" title="Manage the players currently on the server."><span>Players</span></a></li>
+
+</ul>
+</li>
+<li class="with-submenu"><a href="/ServerAdmin/policy" title="Define the policies required to join the server."><span>Access Policy</span></a>
+<ul class="navigation">
+<li class="no-submenu"><a href="/ServerAdmin/policy/passwords" title="Change the game and/or administration passwords."><span>Passwords</span></a></li>
+<li class="no-submenu"><a href="/ServerAdmin/policy/session" title="View current session bans."><span>Session Bans</span></a></li>
+<li class="no-submenu"><a href="/ServerAdmin/policy/bans" title="Change account ban records. These records ban a single online account."><span>Banned IDs</span></a></li>
+<li class="no-submenu"><a href="/ServerAdmin/policy/ip" title="Change the IP policies that determine who can join the server."><span>IP Masks</span></a></li>
+
+</ul>
+</li>
+<li class="with-submenu"><a href="/ServerAdmin/settings" title=""><span>Settings</span></a>
+<ul class="navigation">
+<li class="no-submenu"><a href="/ServerAdmin/settings/general" title="Change various server wide settings. These settings affect all game types. Changes will take effect in the next level."><span>General</span></a></li>
+<li class="no-submenu"><a href="/ServerAdmin/settings/gametypes" title="Change the default settings of the gametypes. Changes will take effect in the next level."><span>Gametypes</span></a></li>
+<li class="no-submenu"><a href="/ServerAdmin/settings/maplist" title="Change the game type specific map cycles. each game type can have a single map cycle."><span>Map Cycles</span></a></li>
+<li class="no-submenu"><a href="/ServerAdmin/settings/serveractors" title="Server actors are special addons that often add extra functionality to the server."><span>Server Actors</span></a></li>
+<li class="no-submenu"><a href="/ServerAdmin/settings/welcome" title="Change the content of the screen shown when players join."><span>Welcome Screen</span></a></li>
+
+</ul>
+</li>
+<li class="no-submenu"><a href="/ServerAdmin/console" title="Execute console commands as if they are directly entered on the console of the server. You may not have access to the same commands as you would when logged in as admin when playing on the server."><span>Management Console</span></a></li>
+<li class="no-submenu"><a href="/ServerAdmin/webadmin" title="Change the web administration configuration."><span>WebAdmin Settings</span></a></li>
+<li class="no-submenu"><a href="/ServerAdmin/logout" title="Log out from the webadmin and clear all authentication information."><span>Log out</span></a></li>
+
+</ul>
+
+</div>
+
+
+<div id="chatwindow">
+<h2>
+  Chat Console
+  <span id="chatframeactions">
+    <span class="chatmin" onclick="toggleChatFrame();" title="Toggle"><span>[&plusmn;]</span></span> 
+    <a class="chatmax" href="/ServerAdmin/current/chat" title="Maximize"><span>[&uArr;]</span></a>
+  </span>
+</h2>
+<iframe id="chatwindowframe" src="/ServerAdmin/current/chat+frame" width="100%" height="150px" onload="resizeChatWindow()"></iframe>
+<script type="text/javascript" src="/images/current_chat_frame.js?gzip"></script>
+</div>
+
+
+
+
+
+<div id="footer">
+Copyright 2014 Tripwire Interactive LLC
+&#8212;
+<a href="/ServerAdmin/about">About the Killing Floor 2 WebAdmin</a>
+</div>
+
+</body>
+</html>
+
+

@@ -5,6 +5,8 @@ import org.boncey.lcdjava.Screen;
 import org.boncey.lcdjava.StringWidget;
 import org.boncey.lcdjava.TitleWidget;
 
+import java.util.List;
+
 class Display {
     private final LCD lcd;
 
@@ -16,6 +18,8 @@ class Display {
     private final StringWidget players;
     private final StringWidget spectators;
     private final Screen statusScreen;
+    private final Screen playersScreen;
+    private final StringWidget player[];
 
     Display(String host, int port) {
         lcd = new LCD(host, port);
@@ -52,6 +56,18 @@ class Display {
         playersLabel.activate();
         spectators.activate();
         spectatorsLabel.activate();
+
+        playersScreen = lcd.constructScreen("players");
+        TitleWidget playersTitle = TitleWidget.construct(playersScreen, "Top 3 players");
+        player = new StringWidget[3];
+        for (int i = 0; i < 3; i++) {
+            player[i] = StringWidget.construct(playersScreen, 1, i+2, "");
+        }
+        playersScreen.activate();
+        playersTitle.activate();
+        for (int i = 0; i < 3; i++) {
+            player[i].activate();
+        }
     }
 
     void shutdown() {
@@ -74,9 +90,11 @@ class Display {
         if (active) {
             activeGame.setText("In game");
             statusScreen.setPriority(Screen.PRIORITY_FOREGROUND);
+            playersScreen.setPriority(Screen.PRIORITY_FOREGROUND);
         } else {
             activeGame.setText("No players");
             statusScreen.setPriority(Screen.PRIORITY_BACKGROUND);
+            playersScreen.setPriority(Screen.PRIORITY_BACKGROUND);
         }
     }
 
@@ -90,5 +108,12 @@ class Display {
 
     void setSpectators(String str) {
         spectators.setText(str);
+    }
+
+    void setPlayerList(List<Player> players) {
+        for (int i = 0; i < 3 && i < players.size(); i++) {
+            Player p = players.get(i);
+            player[i].setText(p.kills + " " + Player.formatPerk.get(p.perk) + " " + p.name);
+        }
     }
 }

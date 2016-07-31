@@ -59,12 +59,14 @@ public class WebAdminClient {
 
         Element playersTable = doc.getElementById("players");
         Elements tableHeader = playersTable.select("table thead tr th");
-        Elements tableHeaderAs = tableHeader.select("th a");
 
         // columns = map text columnNames
         List<String> columnNames = new ArrayList<>();
-        for (Element a : tableHeaderAs) {
-            columnNames.add(a.text());
+        for (Element th : tableHeader) {
+            // NOTE: inside the equals string is a magic non-breaking space character
+            if (th.text().equals("\u00A0"))
+                continue;
+            columnNames.add(th.text());
         }
 
         Elements playerRows = playersTable.select("table tbody tr");

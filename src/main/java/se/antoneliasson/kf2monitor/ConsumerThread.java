@@ -17,7 +17,6 @@ public class ConsumerThread extends Thread {
         try {
             while (!interrupted()) {
                 GameDataContainer message = messages.take();
-                System.out.println(message);
 
                 Map<String, String> game = message.game;
                 Map<String, String> rules = message.rules;
@@ -29,6 +28,8 @@ public class ConsumerThread extends Thread {
                 display.setWave(rules.get("Wave"));
                 display.setSpectators(rules.get("Spectators"));
                 display.setPlayers(rules.get("Players"));
+
+                display.setPlayerList(message.players);
             }
         } catch (InterruptedException e) {}
         display.shutdown();

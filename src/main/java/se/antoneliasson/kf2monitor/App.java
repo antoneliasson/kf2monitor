@@ -21,6 +21,7 @@ public class App
             public void run() {
                 p.interrupt();
                 c.interrupt();
+                // Worker threads can shut down in any order as long as they terminate before the JVM does
                 try {
                     p.join();
                     c.join();

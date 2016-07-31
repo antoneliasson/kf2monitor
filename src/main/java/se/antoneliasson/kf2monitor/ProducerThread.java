@@ -19,7 +19,6 @@ public class ProducerThread extends Thread {
             while (!interrupted()) {
                 GameDataContainer c = client.update();
                 messages.put(c);
-                //System.out.println(c.game + "\n" + c.rules);
 
                 t += period;
                 long diff = t - System.currentTimeMillis();

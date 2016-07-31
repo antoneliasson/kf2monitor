@@ -51,6 +51,7 @@ public class WebAdminClient {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
+
         Element currentGame = doc.getElementById("currentGame");
         Elements dlItems = currentGame.select("dt, dd");
         Map<String, String> game = mapDL(dlItems);

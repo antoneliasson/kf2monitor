@@ -15,8 +15,6 @@ public class App
         ProducerThread p = new ProducerThread(messages, URL, username, password);
         Display display = new Display(host, port);
         ConsumerThread c = new ConsumerThread(messages, display);
-        p.start();
-        c.start();
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -32,6 +30,9 @@ public class App
                 }
             }
         });
+
+        p.start();
+        c.start();
     }
 
     public static void main( String[] args )

@@ -1,5 +1,6 @@
 package se.antoneliasson.kf2monitor;
 
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -7,6 +8,7 @@ import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.ConnectException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -41,7 +43,18 @@ public class WebAdminClient {
             doc = Jsoup.connect(url)
                     .header("Authorization", "Basic " + encodedString)
                     .get();
+        } catch (HttpStatusException hse) {
+            if (hse.getStatusCode() == 401) {
+                System.err.println("WebAdmin authentication failed. Check your password and try again.");
+                System.exit(1);
+            }
+            if (hse.getStatusCode() == 403) {
+                System.err.println("Too many unsuccessful login attempts. Restart your KF2 server and try again.");
+                System.exit(1);
+            }
+            hse.printStackTrace();
         } catch (IOException e) {
+            System.err.println("Problem officer!");
             e.printStackTrace();
         }
 

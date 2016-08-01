@@ -8,6 +8,7 @@ import static java.lang.System.exit;
 public class App 
 {
     static final String URL = "http://kf2server:8080/ServerAdmin/current/info";
+    static final String USERNAME = "admin";
 
     public App(String username, String password, String host, int port) {
         BlockingQueue<GameDataContainer> messages = new LinkedBlockingQueue<>();
@@ -35,19 +36,18 @@ public class App
 
     public static void main( String[] args )
     {
-        if (args.length < 3) {
-            System.err.println("Usage: java App <webadmin username> <webadmin password> <lcdproc host> [lcdproc port]");
+        if (args.length < 2) {
+            System.err.println("Usage: java App <webadmin password> <lcdproc host> [lcdproc port]");
             exit(1);
         }
-        String username = args[0];
-        String password = args[1];
-        String host = args[2];
+        String password = args[0];
+        String host = args[1];
         int port;
-        if (args.length > 3) {
-            port = Integer.parseInt(args[3]);
+        if (args.length > 2) {
+            port = Integer.parseInt(args[2]);
         } else {
             port = 13666;
         }
-        new App(username, password, host, port);
+        new App(USERNAME, password, host, port);
     }
 }

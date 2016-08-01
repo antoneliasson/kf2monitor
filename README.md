@@ -56,6 +56,12 @@ If you do this after you already imported the project into your IDE from the Mav
 
 You should now be able to build kf2monitor by issuing a `mvn compile` in its checked out source directory. Unless I've broken the API of lcdjava of course, since it doesn't have a stable release yet.
 
+To package it along with all dependencies into a self-contained JAR, execute `mvn package`. You may now run the program like this:
+
+    $ java -jar target/kf2monitor-1.0-SNAPSHOT-jar-with-dependencies.jar kf2server:8080 webadmin_password 192.168.1.242
+
+assuming that your KF2 server is resolvable by the domain name *kf2server*, has WebAdmin running on port 8080 and that your LCDproc instance is listening on the default port 13666 on 192.168.1.242.
+
 [lcdjava]: https://github.com/boncey/lcdjava/
 
 Rationale

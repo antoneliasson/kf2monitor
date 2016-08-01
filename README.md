@@ -81,6 +81,5 @@ There is basically no error checking. The program will explode spectacularly if 
 
 In particular:
 
- - While the KF2 server changes map it refuses (in TCP terminology) connections to the WebAdmin interface. kf2monitor does not handle this.
  - If there are problems communicating with LCDproc, you get a slightly different stack trace.
  - Shutdown is a bit wobbly as there are calls to System.exit() all over the place. It should exit cleanly even during errors, but keep it in mind if the program functionality is ever extended.

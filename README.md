@@ -77,7 +77,7 @@ For development purposes Jsoup can be made to access a local file instead of a r
 Known bugs
 ----------
 
-There is basically no error checking. The program will explode spectacularly if anything should go wrong at any time.
+There is very little error checking. The program might explode spectacularly if anything should go wrong at any time.
 
 In particular:
 

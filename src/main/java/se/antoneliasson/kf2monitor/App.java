@@ -14,7 +14,7 @@ public class App
     public App(String webAdminHost, String username, String password, String host, int port) {
         String webAdminURL = "http://" + webAdminHost + "/ServerAdmin/current/info";
         BlockingQueue<Message> messages = new LinkedBlockingQueue<>();
-        ProducerThread p = new ProducerThread(messages, webAdminHost, username, password);
+        ProducerThread p = new ProducerThread(messages, webAdminURL, username, password);
         Display display = new Display(host, port);
         ConsumerThread c = new ConsumerThread(messages, display);
 

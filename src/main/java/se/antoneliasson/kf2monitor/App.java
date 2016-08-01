@@ -1,5 +1,7 @@
 package se.antoneliasson.kf2monitor;
 
+import se.antoneliasson.kf2monitor.messages.GameDataContainer;
+
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 

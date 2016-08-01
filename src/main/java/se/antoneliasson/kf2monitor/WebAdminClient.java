@@ -5,8 +5,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import se.antoneliasson.kf2monitor.messages.GameDataContainer;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.nio.charset.StandardCharsets;

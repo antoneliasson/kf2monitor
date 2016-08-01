@@ -1,9 +1,11 @@
-package se.antoneliasson.kf2monitor;
+package se.antoneliasson.kf2monitor.messages;
+
+import se.antoneliasson.kf2monitor.Player;
 
 import java.util.List;
 import java.util.Map;
 
-public class GameDataContainer {
+public class GameDataContainer extends Message {
     @Override
     public String toString() {
         return "GameDataContainer{" +

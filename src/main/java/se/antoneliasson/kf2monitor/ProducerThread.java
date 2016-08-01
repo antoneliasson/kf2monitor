@@ -1,14 +1,15 @@
 package se.antoneliasson.kf2monitor;
 
 import se.antoneliasson.kf2monitor.messages.GameDataContainer;
+import se.antoneliasson.kf2monitor.messages.Message;
 
 import java.util.concurrent.BlockingQueue;
 
 public class ProducerThread extends Thread {
-    private final BlockingQueue<GameDataContainer> messages;
+    private final BlockingQueue<Message> messages;
     private final WebAdminClient client;
 
-    public ProducerThread(BlockingQueue<GameDataContainer> messages, String url, String user, String password) {
+    public ProducerThread(BlockingQueue<Message> messages, String url, String user, String password) {
         this.messages = messages;
         client = new WebAdminClient(url, user, password);
     }

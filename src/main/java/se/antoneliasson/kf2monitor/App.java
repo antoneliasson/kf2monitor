@@ -1,6 +1,6 @@
 package se.antoneliasson.kf2monitor;
 
-import se.antoneliasson.kf2monitor.messages.GameDataContainer;
+import se.antoneliasson.kf2monitor.messages.Message;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -13,7 +13,7 @@ public class App
     static final String USERNAME = "admin";
 
     public App(String username, String password, String host, int port) {
-        BlockingQueue<GameDataContainer> messages = new LinkedBlockingQueue<>();
+        BlockingQueue<Message> messages = new LinkedBlockingQueue<>();
         ProducerThread p = new ProducerThread(messages, URL, username, password);
         Display display = new Display(host, port);
         ConsumerThread c = new ConsumerThread(messages, display);

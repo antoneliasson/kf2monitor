@@ -33,6 +33,8 @@ Screen 3 shows the top 3 players (by kill count) and their perks.
 
 ![Players screen](doc/screen3.jpg)
 
+While the KF2 server changes map its WebAdmin interface is unresponsive. When this happens kf2monitor shows an error on the display and waits for the server to come back.
+
 Building
 --------
 
@@ -82,4 +84,4 @@ There is very little error checking. The program might explode spectacularly if 
 In particular:
 
  - If there are problems communicating with LCDproc, you get a slightly different stack trace.
- - Shutdown is a bit wobbly as there are calls to System.exit() all over the place. It should exit cleanly even during errors, but keep it in mind if the program functionality is ever extended.
+ - Shutdown is a bit wobbly as there are calls to System.exit() all over the place. It *usually* exits cleanly on errors, but sometimes it doesn't. Keep your `kill -9` hammer within reach for now.

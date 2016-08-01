@@ -6,6 +6,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import se.antoneliasson.kf2monitor.messages.GameDataContainer;
+import se.antoneliasson.kf2monitor.messages.Message;
+import se.antoneliasson.kf2monitor.messages.TemporaryFailure;
 
 import java.io.IOException;
 import java.net.ConnectException;
@@ -33,7 +35,7 @@ public class WebAdminClient {
         return m;
     }
 
-    public GameDataContainer update() {
+    public Message update() {
         Document doc = null;
 
         String authString = user + ":" + password;
@@ -53,6 +55,9 @@ public class WebAdminClient {
                 System.exit(1);
             }
             hse.printStackTrace();
+        } catch (ConnectException ce) {
+            System.out.println("WebAdmin refused connection. Trying again...");
+            return new TemporaryFailure();
         } catch (IOException e) {
             System.err.println("Problem officer!");
             e.printStackTrace();

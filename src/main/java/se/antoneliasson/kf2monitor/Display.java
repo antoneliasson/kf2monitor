@@ -21,6 +21,8 @@ class Display {
     private final Screen playersScreen;
     private final StringWidget player[];
 
+    private final Screen alertScreen;
+
     Display(String host, int port) {
         lcd = new LCD(host, port);
 
@@ -68,6 +70,15 @@ class Display {
         for (int i = 0; i < 3; i++) {
             player[i].activate();
         }
+
+        alertScreen = lcd.constructScreen("alert");
+        TitleWidget alertTitle = TitleWidget.construct(alertScreen, "Alert");
+        StringWidget alertM1 = StringWidget.construct(alertScreen, 1, 2, "Error connecting to");
+        StringWidget alertM2 = StringWidget.construct(alertScreen, 1, 3, "WebAdmin. Retrying..");
+        alertScreen.activate();
+        alertTitle.activate();
+        alertM1.activate();
+        alertM2.activate();
     }
 
     void shutdown() {
@@ -119,5 +130,13 @@ class Display {
                 player[i].setText("");
             }
         }
+    }
+
+    void showAlert() {
+        alertScreen.setPriority(Screen.PRIORITY_ALERT);
+    }
+
+    void hideAlert() {
+        alertScreen.setPriority(Screen.PRIORITY_HIDDEN);
     }
 }

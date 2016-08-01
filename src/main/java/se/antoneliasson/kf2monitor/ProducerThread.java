@@ -20,7 +20,7 @@ public class ProducerThread extends Thread {
         int period = 1000;
         try {
             while (!interrupted()) {
-                GameDataContainer c = client.update();
+                Message c = client.update();
                 messages.put(c);
 
                 t += period;

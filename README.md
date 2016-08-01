@@ -35,6 +35,8 @@ Screen 3 shows the top 3 players (by kill count) and their perks.
 
 While the KF2 server changes map its WebAdmin interface is unresponsive. When this happens kf2monitor shows an error on the display and waits for the server to come back.
 
+![Error screen](doc/alert.jpg)
+
 Building
 --------
 

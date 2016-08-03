@@ -39,19 +39,27 @@ public class App
 
     public static void main( String[] args )
     {
-        if (args.length < 3) {
-            System.err.println("Usage: java App <webadmin host[:port]> <webadmin password> <lcdproc host> [lcdproc port]");
-            exit(1);
-        }
-        String webAdminHost = args[0];
-        String password = args[1];
-        String lcdHost = args[2];
-        int port;
+        String webAdminHost;
+        String webAdminPassword;
+        String lcdHost;
+        int lcdPort;
         if (args.length > 3) {
-            port = Integer.parseInt(args[3]);
+            lcdPort = Integer.parseInt(args[3]);
         } else {
-            port = 13666;
+            lcdPort = 13666;
         }
-        new App(webAdminHost, USERNAME, password, lcdHost, port);
+        if (args.length > 2) {
+            lcdHost = args[2];
+        } else {
+            lcdHost = "localhost";
+        }
+        if (args.length > 1) {
+            webAdminHost = args[0];
+            webAdminPassword = args[1];
+
+            new App(webAdminHost, USERNAME, webAdminPassword, lcdHost, lcdPort);
+        } else {
+            System.err.println("Usage: java App <webadmin host[:port]> <webadmin password> [lcdproc host [lcdproc port]]");
+        }
     }
 }

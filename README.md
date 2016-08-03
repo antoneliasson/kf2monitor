@@ -86,6 +86,25 @@ To make everything shut down cleanly a ShutdownHook is used in App that interrup
 
 For development purposes Jsoup can be made to access a local file instead of a remote HTTP server. See the commented lines in WebAdminClient::update().
 
+Autostart
+---------
+
+To start kf2monitor automatically on boot on a systemd OS, create a file /etc/systemd/system/kf2monitor.service:
+
+```
+[Unit]
+Description=kf2monitor
+Requires=LCDd.service
+
+[Service]
+ExecStart=-/usr/bin/java -jar /home/pi/kf2monitor-1.0-SNAPSHOT-jar-with-dependencies.jar kf2server:8080 webadmin_password
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Edit path, hostname and password to taste. `systemctl enable kf2monitor.service` to enable the service on boot. Yes, your password will be visible to anyone who can run `ps` on your device, but your Raspberry Pi was never a multi-user mainframe in the first place, was it?
+
 Known bugs
 ----------
 

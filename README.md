@@ -10,7 +10,9 @@ Hardware
 
 You need some kind of character display connected to an lcdproc somewhere this application can access it. It doesn't have to be on the same computer as long as there is a path for TCP traffic from kf2monitor to lcdproc.
 
-I use a HD44780 compatible 20x4 alphanumeric display connected to a [C.H.I.P.][chip]. A Raspberry Pi or similar will probably also work. How to connect the hardware and set up lcdproc is outside the scope of this README.
+I have tried it with a HD44780 compatible 20x4 alphanumeric display connected to a [C.H.I.P.][chip] and a Raspberry Pi Model B. Any similar single-board computer outfitted with GPIOs that is capable of running Linux should suffice. How to connect the hardware and set up lcdproc is outside the scope of this README.
+
+I should note that it *is* quite possible to run kf2monitor as well as LCDproc on one of the mentioned tiny ARM based computers. Start up is extremely slow (tens of seconds) but when it is running the very limited CPU performance of the device is not noticeable.
 
 [chip]: https://getchip.com/
 

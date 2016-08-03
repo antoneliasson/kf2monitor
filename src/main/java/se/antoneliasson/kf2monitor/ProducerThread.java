@@ -17,7 +17,7 @@ public class ProducerThread extends Thread {
     @Override
     public void run() {
         long t = System.currentTimeMillis();
-        int period = 1000;
+        int period = 10000;
         try {
             while (!interrupted()) {
                 Message c = client.update();

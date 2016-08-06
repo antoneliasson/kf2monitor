@@ -1,15 +1,17 @@
 package se.antoneliasson.kf2monitor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import se.antoneliasson.kf2monitor.messages.Message;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import static java.lang.System.exit;
-
 public class App 
 {
     private static final String USERNAME = "admin";
+
+    private final Logger logger = LoggerFactory.getLogger(App.class);
 
     public App(String webAdminHost, String username, String password, String host, int port) {
         String webAdminURL = "http://" + webAdminHost + "/ServerAdmin/current/info";
@@ -35,6 +37,8 @@ public class App
 
         p.start();
         c.start();
+
+        logger.info("KF2monitor started");
     }
 
     public static void main( String[] args )

@@ -44,11 +44,11 @@ Building
 
 kf2monitor is a Maven project. To build and JAR' it you do the standard procedure of `mvn compile` and `mvn package`. There is a prerequisite however.
 
-### Prerequisite: Building lcdjava
+### Prerequisite: Installing lcdjava
 
-kf2monitor uses [lcdjava][] as its lcdproc client library. lcdjava hasn't yet been published to a public Maven repository so you get to build it yourself and install it to your local Maven repository before being able to build kf2monitor. Don't worry, this isn't as difficult as it may sound. Simply clone [lcdjava's source code][lcdjava], `cd` to its working directory and run `mvn package` to build and package it into *target/lcdjava-1.0-SNAPSHOT.jar*. Now run
+kf2monitor uses [lcdjava][] as its lcdproc client library. lcdjava hasn't yet been published to a public Maven repository. There is however a Github release available that you can download and install into your local Maven repository in order to satisfy kf2monitor's build dependency. Don't worry, this isn't as difficult as it may sound. Currently lcdjava-0.5.0 is used. Simply [download the compiled JAR][lcdjava] and run
 
-    $ mvn install:install-file -Dfile=target/lcdjava-1.0-SNAPSHOT.jar
+    $ mvn install:install-file -Dfile=lcdjava-0.5.0.jar
 
 to install the JAR into your local repository (in *$HOME/.m2/*). You're done!
 
@@ -64,7 +64,7 @@ To package it along with all dependencies into a self-contained JAR, execute `mv
 
 assuming that your KF2 server is resolvable by the domain name *kf2server*, has WebAdmin running on port 8080 and that your LCDproc instance is listening on the default port 13666 on 192.168.1.242.
 
-[lcdjava]: https://github.com/boncey/lcdjava/
+[lcdjava]: https://github.com/lcdproc/lcdjava/releases/download/0.5.0/lcdjava-0.5.0.jar
 
 Rationale
 ---------

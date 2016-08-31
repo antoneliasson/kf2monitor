@@ -26,21 +26,19 @@ class Display {
     Display(String host, int port) {
         lcd = new LCD(host, port);
 
-        Screen gameInfoScreen = lcd.constructScreen("game");
-        gameInfoScreen.setPriority(Screen.PRIORITY_FOREGROUND);
+        Screen gameInfoScreen = lcd.constructScreen("game", Screen.PRIORITY_FOREGROUND, true);
 
         serverName = TitleWidget.construct(gameInfoScreen, "Server Name");
         map = StringWidget.construct(gameInfoScreen, 1, 2, "Map");
         gameType = StringWidget.construct(gameInfoScreen, 1, 3, "Game type");
         activeGame = StringWidget.construct(gameInfoScreen, 1, 4, "");
 
-        gameInfoScreen.activate();
         serverName.activate();
         map.activate();
         gameType.activate();
         activeGame.activate();
 
-        statusScreen = lcd.constructScreen("status");
+        statusScreen = lcd.constructScreen("status", Screen.PRIORITY_HIDDEN, true);
 
         TitleWidget statusLabel = TitleWidget.construct(statusScreen, "Game status");
         StringWidget waveLabel = StringWidget.construct(statusScreen, 1, 2, "Wave ");
@@ -50,7 +48,6 @@ class Display {
         spectators = StringWidget.construct(statusScreen, 1, 4, "x/y");
         StringWidget spectatorsLabel = StringWidget.construct(statusScreen, 5, 4, "spectators");
 
-        statusScreen.activate();
         statusLabel.activate();
         waveLabel.activate();
         wave.activate();
@@ -59,23 +56,21 @@ class Display {
         spectators.activate();
         spectatorsLabel.activate();
 
-        playersScreen = lcd.constructScreen("players");
+        playersScreen = lcd.constructScreen("players", Screen.PRIORITY_HIDDEN, true);
         TitleWidget playersTitle = TitleWidget.construct(playersScreen, "Top 3 players");
         player = new StringWidget[3];
         for (int i = 0; i < 3; i++) {
             player[i] = StringWidget.construct(playersScreen, 1, i+2, "");
         }
-        playersScreen.activate();
         playersTitle.activate();
         for (int i = 0; i < 3; i++) {
             player[i].activate();
         }
 
-        alertScreen = lcd.constructScreen("alert");
+        alertScreen = lcd.constructScreen("alert", Screen.PRIORITY_HIDDEN, true);
         TitleWidget alertTitle = TitleWidget.construct(alertScreen, "Alert");
         StringWidget alertM1 = StringWidget.construct(alertScreen, 1, 2, "Error connecting to");
         StringWidget alertM2 = StringWidget.construct(alertScreen, 1, 3, "WebAdmin. Retrying..");
-        alertScreen.activate();
         alertTitle.activate();
         alertM1.activate();
         alertM2.activate();
@@ -104,8 +99,8 @@ class Display {
             playersScreen.setPriority(Screen.PRIORITY_FOREGROUND);
         } else {
             activeGame.setText("No players");
-            statusScreen.setPriority(Screen.PRIORITY_BACKGROUND);
-            playersScreen.setPriority(Screen.PRIORITY_BACKGROUND);
+            statusScreen.setPriority(Screen.PRIORITY_HIDDEN);
+            playersScreen.setPriority(Screen.PRIORITY_HIDDEN);
         }
     }
 

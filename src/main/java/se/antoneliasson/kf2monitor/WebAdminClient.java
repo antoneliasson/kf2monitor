@@ -11,6 +11,7 @@ import se.antoneliasson.kf2monitor.messages.TemporaryFailure;
 
 import java.io.IOException;
 import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -57,6 +58,9 @@ public class WebAdminClient {
             hse.printStackTrace();
         } catch (ConnectException ce) {
             System.out.println("WebAdmin refused connection. Trying again...");
+            return new TemporaryFailure();
+        } catch (SocketTimeoutException e) {
+            System.out.println("WebAdmin connection timed out. Trying again...");
             return new TemporaryFailure();
         } catch (IOException e) {
             System.err.println("Problem officer!");

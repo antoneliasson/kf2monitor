@@ -32,5 +32,6 @@ public class Player {
         formatPerk.put("Demolitionist", "DEM");
         formatPerk.put("Gunslinger", "GS");
         formatPerk.put("Sharpshooter", "SS");
+        formatPerk.put("SWAT", "SWAT");
     }
 }

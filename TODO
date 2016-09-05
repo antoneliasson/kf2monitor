@@ -1,0 +1,42 @@
+A restart of the physical server looks something like this:
+
+sep 04 21:16:51 raspberrypi java[713]: WebAdmin refused connection. Trying again...
+sep 04 22:03:51 raspberrypi java[713]: WebAdmin refused connection. Trying again...
+sep 04 23:00:51 raspberrypi java[713]: WebAdmin refused connection. Trying again...
+sep 05 15:12:21 raspberrypi java[713]: WebAdmin refused connection. Trying again...
+sep 05 15:25:31 raspberrypi java[713]: WebAdmin refused connection. Trying again...
+sep 05 16:17:41 raspberrypi java[713]: WebAdmin refused connection. Trying again...
+sep 05 16:18:01 raspberrypi java[713]: WebAdmin refused connection. Trying again...
+sep 05 16:18:11 raspberrypi java[713]: WebAdmin refused connection. Trying again...
+sep 05 16:18:24 raspberrypi java[713]: WebAdmin connection timed out. Trying again...
+sep 05 16:18:34 raspberrypi java[713]: WebAdmin connection timed out. Trying again...
+sep 05 16:18:44 raspberrypi java[713]: WebAdmin connection timed out. Trying again...
+sep 05 16:18:54 raspberrypi java[713]: Problem officer!
+sep 05 16:18:54 raspberrypi java[713]: java.net.NoRouteToHostException: No route to host
+sep 05 16:18:54 raspberrypi java[713]: at java.net.PlainSocketImpl.socketConnect(Native Method)
+sep 05 16:18:54 raspberrypi java[713]: at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345)
+sep 05 16:18:54 raspberrypi java[713]: at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+sep 05 16:18:54 raspberrypi java[713]: at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+sep 05 16:18:54 raspberrypi java[713]: at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+sep 05 16:18:54 raspberrypi java[713]: at java.net.Socket.connect(Socket.java:589)
+sep 05 16:18:54 raspberrypi java[713]: at sun.net.NetworkClient.doConnect(NetworkClient.java:175)
+sep 05 16:18:54 raspberrypi java[713]: at sun.net.www.http.HttpClient.openServer(HttpClient.java:432)
+sep 05 16:18:54 raspberrypi java[713]: at sun.net.www.http.HttpClient.openServer(HttpClient.java:527)
+sep 05 16:18:54 raspberrypi java[713]: at sun.net.www.http.HttpClient.<init>(HttpClient.java:211)
+sep 05 16:18:54 raspberrypi java[713]: at sun.net.www.http.HttpClient.New(HttpClient.java:308)
+sep 05 16:18:54 raspberrypi java[713]: at sun.net.www.http.HttpClient.New(HttpClient.java:326)
+sep 05 16:18:54 raspberrypi java[713]: at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1167)
+sep 05 16:18:54 raspberrypi java[713]: at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1103)
+sep 05 16:18:54 raspberrypi java[713]: at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:997)
+sep 05 16:18:54 raspberrypi java[713]: at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:931)
+sep 05 16:18:54 raspberrypi java[713]: at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:563)
+sep 05 16:18:54 raspberrypi java[713]: at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:540)
+sep 05 16:18:54 raspberrypi java[713]: at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:227)
+sep 05 16:18:54 raspberrypi java[713]: at org.jsoup.helper.HttpConnection.get(HttpConnection.java:216)
+sep 05 16:18:54 raspberrypi java[713]: at se.antoneliasson.kf2monitor.WebAdminClient.update(WebAdminClient.java:48)
+sep 05 16:18:54 raspberrypi java[713]: at se.antoneliasson.kf2monitor.ProducerThread.run(ProducerThread.java:23)
+sep 05 16:18:54 raspberrypi java[713]: Exception in thread "Thread-0" java.lang.NullPointerException
+sep 05 16:18:54 raspberrypi java[713]: at se.antoneliasson.kf2monitor.WebAdminClient.update(WebAdminClient.java:77)
+sep 05 16:18:54 raspberrypi java[713]: at se.antoneliasson.kf2monitor.ProducerThread.run(ProducerThread.java:23)
+
+Maybe not crash on the first "no route to host". Introduce counted temporary failures? Only x such of each kind is allowed before failing.

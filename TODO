@@ -40,3 +40,5 @@ sep 05 16:18:54 raspberrypi java[713]: at se.antoneliasson.kf2monitor.WebAdminCl
 sep 05 16:18:54 raspberrypi java[713]: at se.antoneliasson.kf2monitor.ProducerThread.run(ProducerThread.java:23)
 
 Maybe not crash on the first "no route to host". Introduce counted temporary failures? Only x such of each kind is allowed before failing.
+
+Wave 0/x means 'in lobby' not 'in game'

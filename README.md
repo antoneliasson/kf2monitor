@@ -95,6 +95,7 @@ To start kf2monitor automatically on boot on a systemd OS, create a file /etc/sy
 [Unit]
 Description=kf2monitor
 Requires=LCDd.service
+After=network-online.target
 
 [Service]
 ExecStart=-/usr/bin/java -jar /home/pi/kf2monitor-1.0-SNAPSHOT-jar-with-dependencies.jar kf2server:8080 webadmin_password
